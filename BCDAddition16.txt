@@ -1,0 +1,28 @@
+DATA_SEG SEGMENT
+    NUM1 DW 1234H
+    NUM2 DW 5678H 
+    SUM DW 0
+DATA_SEG ENDS
+
+CODE_SEG SEGMENT
+    ASSUME CS: CODE_SEG, DS: DATA_SEG
+
+START: MOV AX, DATA_SEG         ;initialize data segment register
+       MOV DS, AX
+
+       MOV AL, NUM1             ;get 1st num
+       MOV BL, NUM2             ;get 2nd num
+       ADD AL, BL               ;converts invalid BCD to valid BCD(works only on AL)
+       DAA 
+       MOV CL, AL               
+       MOV AL, AH               ;move higher byte to AL
+       ADc AL, BH               ;add two higher bytes nums with carry
+       DAA
+       MOV CH, AL                
+       MOV SUM, CX
+
+       MOV AH, 4CH
+       INT 21H
+
+CODE_SEG ENDS
+END START
