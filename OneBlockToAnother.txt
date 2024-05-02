@@ -1,6 +1,6 @@
 DATA_SEG SEGMENT
-     source_arr DB 28H,11H,22H,33H,44H
-     dest_arr DB 5 DUP(?)
+     ARR1 DB 10H,20H,30H,40H,50H
+     ARR2 DB 5 DUP(?)
 DATA_SEG ENDS
 
 CODE_SEG SEGMENT
@@ -8,15 +8,16 @@ CODE_SEG SEGMENT
 START: MOV AX,DATA_SEG
        MOV DS,AX
 
-       LEA SI,source_arr
-       LEA DI,dest_arr
-       MOV CX,5
+       MOV ES,AX
+       MOV CL,08
 NEXT:
-       MOV AL,[SI]
-       MOV [DI],AL
+       MOV SI, OFFSET ARR1
+       MOV DI, OFFSET ARR2
+       MV AL, DS:[SI]
+       MOV ES:[DI],AL
        INC SI
        INC DI
-       LOOP NEXT
+       LOOP BACK
  
        MOV AH,4CH
        INT 21H
