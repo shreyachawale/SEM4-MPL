@@ -10,8 +10,8 @@ CODE_SEG SEGMENT
 START: MOV AX, DATA_SEG         ;initialize data segment register
        MOV DS, AX
 
-       MOV AL, NUM1             ;get 1st num
-       MOV BL, NUM2             ;get 2nd num
+       MOV AX, NUM1             ;get 1st num
+       MOV BX, NUM2             ;get 2nd num
        ADD AL, BL               ;converts invalid BCD to valid BCD(works only on AL)
        DAA 
        MOV CL, AL               
