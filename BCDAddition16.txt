@@ -16,7 +16,7 @@ START: MOV AX, DATA_SEG         ;initialize data segment register
        DAA 
        MOV CL, AL               
        MOV AL, AH               ;move higher byte to AL
-       ADc AL, BH               ;add two higher bytes nums with carry
+       ADC AL, BH               ;add two higher bytes nums with carry
        DAA
        MOV CH, AL                
        MOV SUM, CX
