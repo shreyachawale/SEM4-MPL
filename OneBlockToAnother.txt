@@ -10,10 +10,10 @@ START: MOV AX,DATA_SEG
 
        MOV ES,AX
        MOV CL,08
-NEXT:
+BACK:
        MOV SI, OFFSET ARR1
        MOV DI, OFFSET ARR2
-       MV AL, DS:[SI]
+       MOV AL, DS:[SI]
        MOV ES:[DI],AL
        INC SI
        INC DI
